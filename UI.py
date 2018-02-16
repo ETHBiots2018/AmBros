@@ -15,9 +15,9 @@ from MyWeb3 import MyWeb3
 secret = '0x546de93a45c8df31e63b0bea9534a7ca03e9eb0e817f0d436d9b324b43d0a123'
 address = '0xdce2dd4bB3A9E29714dD317d05869fcD72F20Cbe'
 
-logisticAddress = '0xc69a2c3e8eaa8e901292d69eb5a7b683b81e7c4a'
-consumerAddress = '0x30360b46c86bce97d67bc59ab2a874513860d258'
-deployerAddress = '0x3f5a37d0189b233d2a70a83d1cfa581a25e7e34b'
+logisticAddress = '0x25190f0b52408abfb9e7d6ca7568f5757ee631b1'
+consumerAddress = '0xb5bcfdb6cb7fab3ae81356975b9d07ab94e5108a'
+deployerAddress = '0xdf0a5d23970d6c27c0b47613d3a98abadef31e93'
 myweb3 = MyWeb3(logisticAddress, consumerAddress, deployerAddress, 'AmBros.sol')
 
 BALANCE = 'Balance'
@@ -70,7 +70,7 @@ def submit(btn):
 
     myweb3.createOrder(orderData[ORDER_NUMBER], orderData[SHIPPING_PRICE])
 
-    popup = Popup(title='Info', content=Label(text='Submitted'), size_hint=(0.5, 0.5), font_size = 50)
+    popup = Popup(title='Info', content=Label(text='Submitted', font_size = 50), size_hint=(0.5, 0.5))
     popup.open()
 
 
@@ -157,7 +157,7 @@ class SensorFileChooser(FileChooserListView):
 
     def __init__(self, *args, **kwargs):
         super(SensorFileChooser, self).__init__(*args, **kwargs)
-        self.path = 'cases'
+        self.path = '/Users/lostbenjamin/Desktop/AmBros/cases/'
 
     def on_submit(*args):
         filePath = args[1][0]
