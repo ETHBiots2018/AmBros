@@ -3,11 +3,13 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.popup import Popup
+from kivy.uix.image import Image
 from functools import partial
 from BlockChainAsset import BlockChainAsset
 from MyWeb3 import MyWeb3
@@ -15,9 +17,9 @@ from MyWeb3 import MyWeb3
 secret = '0x546de93a45c8df31e63b0bea9534a7ca03e9eb0e817f0d436d9b324b43d0a123'
 address = '0xdce2dd4bB3A9E29714dD317d05869fcD72F20Cbe'
 
-logisticAddress = '0x25190f0b52408abfb9e7d6ca7568f5757ee631b1'
-consumerAddress = '0xb5bcfdb6cb7fab3ae81356975b9d07ab94e5108a'
-deployerAddress = '0xdf0a5d23970d6c27c0b47613d3a98abadef31e93'
+logisticAddress = '0xfb1e3d935da5fc952bee28d600b4fef481bc8eb7'
+consumerAddress = '0x07f69985895fb70953f74f473f20e353136cf91f'
+deployerAddress = '0xb39237807bcb2d32a26578d289b61cb53b6ae321'
 myweb3 = MyWeb3(logisticAddress, consumerAddress, deployerAddress, 'AmBros.sol')
 
 BALANCE = 'Balance'
@@ -70,7 +72,7 @@ def submit(btn):
 
     myweb3.createOrder(orderData[ORDER_NUMBER], orderData[SHIPPING_PRICE])
 
-    popup = Popup(title='Info', content=Label(text='Submitted', font_size = 50), size_hint=(0.5, 0.5))
+    popup = Popup(title='Info', content=Label(text='Submitted', font_size = 50), size_hint=(0.3, 0.3))
     popup.open()
 
 
@@ -78,7 +80,7 @@ def getBalance(instance):
     consumerBalance = int(round(myweb3.getConsumerBalance() / 1e18))
     logisticBalance = int(round(myweb3.getLogisticBalance() / 1e18))
     contractBalance = int(round(myweb3.getContractBalance() / 1e18))
-    popup = Popup(title='Info', content=Label(text='Consumer Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance), font_size = 50), size_hint=(0.5, 0.5))
+    popup = Popup(title='Info', content=Label(text='Consumer Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance), font_size = 50), size_hint=(0.3, 0.3))
     popup.open()
 
 
@@ -167,7 +169,7 @@ class SensorFileChooser(FileChooserListView):
             index, tempSensor1, tempSensor2, tempSensor3, timestamp = list(map(lambda item: int(item), line.strip('\r\n').split(',')))
             bcAsset.buildEvent(tempSensor1, tempSensor2, tempSensor3, timestamp)
         f.close()
-        popup = Popup(title='Info', content=Label(text='Arrived!', font_size = 50), size_hint=(0.5, 0.5))
+        popup = Popup(title='Info', content=Label(text='Arrived!', font_size = 50), size_hint=(0.3, 0.3))
         popup.open()
 
 
@@ -215,13 +217,13 @@ def check(instance):
         print('payBack {}'.format(payBack))
         print('payToDelivery {}'.format(payToDelivery))
 
-    popup = Popup(title='Info', content=Label(text='Pay Back: {} ether\nPay For Delivery: {} ether'.format(int(round(payBack/1e18)), int(round(payToDelivery/1e18))), font_size = 50), size_hint=(0.5, 0.5))
+    popup = Popup(title='Info', content=Label(text='Pay Back: {} ether\nPay For Delivery: {} ether'.format(int(round(payBack/1e18)), int(round(payToDelivery/1e18))), font_size = 50), size_hint=(0.3, 0.3))
     popup.open()
 
 
 def confirm(instance):
     myweb3.confirm(orderData[ORDER_NUMBER], payToDelivery)
-    popup = Popup(title='Info', content=Label(text='Confirmed!'.format(payBack, payToDelivery), font_size = 50), size_hint=(0.5, 0.5))
+    popup = Popup(title='Info', content=Label(text='Confirmed!'.format(payBack, payToDelivery), font_size = 50), size_hint=(0.3, 0.3))
     popup.open()
 
 
