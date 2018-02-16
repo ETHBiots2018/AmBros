@@ -70,7 +70,7 @@ def submit(btn):
 
     myweb3.createOrder(orderData[ORDER_NUMBER], orderData[SHIPPING_PRICE])
 
-    popup = Popup(title='Info', content=Label(text='Submitted'), size_hint=(0.3, 0.3))
+    popup = Popup(title='Info', content=Label(text='Submitted'), size_hint=(0.5, 0.5), font_size = 50)
     popup.open()
 
 
@@ -78,7 +78,7 @@ def getBalance(instance):
     consumerBalance = int(round(myweb3.getConsumerBalance() / 1e18))
     logisticBalance = int(round(myweb3.getLogisticBalance() / 1e18))
     contractBalance = int(round(myweb3.getContractBalance() / 1e18))
-    popup = Popup(title='Info', content=Label(text='Consumer Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance)), size_hint=(0.3, 0.3))
+    popup = Popup(title='Info', content=Label(text='Consumer Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance), font_size = 50), size_hint=(0.5, 0.5))
     popup.open()
 
 
@@ -86,7 +86,7 @@ class BalanceScreen(Screen):
 
     def __init__(self, *args, **kwargs):
         super(BalanceScreen, self).__init__(*args, **kwargs)
-        btn = Button(text='Get Balance', size_hint=(0.2, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        btn = Button(text='Get Balance', size_hint=(0.2, 0.2), pos_hint={'center_x': 0.5, 'center_y': 0.5}, font_size = 50)
         self.add_widget(btn)
         btn.bind(on_press=getBalance)
 
@@ -96,8 +96,8 @@ class FormEntry(GridLayout):
     def __init__(self, name=None, *args, **kwargs):
         super(FormEntry, self).__init__(*args, **kwargs)
         self.cols = 2
-        self.add_widget(Label(text=name))
-        self.input = TextInput(multiline=False)
+        self.add_widget(Label(text=name, font_size = 50))
+        self.input = TextInput(multiline=False, font_size = 50)
         self.add_widget(self.input)
 
 
@@ -105,6 +105,7 @@ class SubmitButton(Button):
 
     def __init__(self, father=None, *args, **kwargs):
         super(Button, self).__init__(*args, **kwargs)
+        self.font_size = 50
         self.text = 'Submit'
         self.father = father
 
@@ -156,7 +157,7 @@ class SensorFileChooser(FileChooserListView):
 
     def __init__(self, *args, **kwargs):
         super(SensorFileChooser, self).__init__(*args, **kwargs)
-        self.path = '/Users/lostbenjamin/Desktop/'
+        self.path = 'cases'
 
     def on_submit(*args):
         filePath = args[1][0]
@@ -166,7 +167,7 @@ class SensorFileChooser(FileChooserListView):
             index, tempSensor1, tempSensor2, tempSensor3, timestamp = list(map(lambda item: int(item), line.strip('\r\n').split(',')))
             bcAsset.buildEvent(tempSensor1, tempSensor2, tempSensor3, timestamp)
         f.close()
-        popup = Popup(title='Info', content=Label(text='Arrived!'), size_hint=(0.3, 0.3))
+        popup = Popup(title='Info', content=Label(text='Arrived!', font_size = 50), size_hint=(0.5, 0.5))
         popup.open()
 
 
@@ -214,13 +215,13 @@ def check(instance):
         print('payBack {}'.format(payBack))
         print('payToDelivery {}'.format(payToDelivery))
 
-    popup = Popup(title='Info', content=Label(text='Pay Back: {} ether\nPay For Delivery: {} ether'.format(int(round(payBack/1e18)), int(round(payToDelivery/1e18)))), size_hint=(0.3, 0.3))
+    popup = Popup(title='Info', content=Label(text='Pay Back: {} ether\nPay For Delivery: {} ether'.format(int(round(payBack/1e18)), int(round(payToDelivery/1e18))), font_size = 50), size_hint=(0.5, 0.5))
     popup.open()
 
 
 def confirm(instance):
     myweb3.confirm(orderData[ORDER_NUMBER], payToDelivery)
-    popup = Popup(title='Info', content=Label(text='Confirmed!'.format(payBack, payToDelivery)), size_hint=(0.3, 0.3))
+    popup = Popup(title='Info', content=Label(text='Confirmed!'.format(payBack, payToDelivery), font_size = 50), size_hint=(0.5, 0.5))
     popup.open()
 
 
@@ -231,11 +232,11 @@ class ReceiveButtonsLayout(BoxLayout):
         self.orientation = 'horizontal'
         self.spacing = 100
 
-        checkBtn = Button(text='Check')
+        checkBtn = Button(text='Check', font_size = 50)
         checkBtn.bind(on_press=check)
         self.add_widget(checkBtn)
 
-        confirmBtn = Button(text='Confirm')
+        confirmBtn = Button(text='Confirm', font_size = 50)
         confirmBtn.bind(on_press=confirm)
         self.add_widget(confirmBtn)
 
@@ -283,7 +284,7 @@ class Navigation(GridLayout):
         self.cols = 4
         self.size_hint = (1, .1)
         for text in screenTexts:
-            self.add_widget(Button(text=text, on_release=self.change))
+            self.add_widget(Button(text=text, on_release=self.change, font_size = 50))
 
 
     def change(self, btn):
