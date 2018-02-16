@@ -6,13 +6,19 @@ This is a Dapp for BIOTS 2018 hackathon in ETH Zurich. We aim to provide a bette
 ![Alt text](https://github.com/ETHBiots2018/AmBros/blob/master/software.png)
 
 Balance: for querying the balance of logistic company, consumer and smart contract
+
 Order: for consumer to place a order to logistic company.
+
 Sensor: sensor data collected and uploaded to blockchain during transportation
+
 Receive: check the package and pay.
 
 
 # Files
 AmBros.sol: the smart contract.
+
 BlockChainAsset.py: interface for sending and receiving data from block chain.
+
 MyWeb3.py: interface for using the smart contract through web3.py.
+
 UI.py: the UI and how the whole thing works together.
