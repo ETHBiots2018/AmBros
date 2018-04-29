@@ -22,3 +22,12 @@ BlockChainAsset.py: interface for sending and receiving data from block chain.
 MyWeb3.py: interface for using the smart contract through web3.py.
 
 UI.py: the UI and how the whole thing works together.
+
+
+# Dependencies
+Install web3.py following instructions in [link](https://github.com/ethereum/web3.py)
+Install kivy following instructions in [link](https://kivy.org/docs/installation/installation-osx.html#using-homebrew-with-pip)
+
+
+# How to Test
+Run `testrpc` and replace `logisticAddress`, `consumterAddress` and `deployerAddress` in `UI.py` with accounts provided by `testrpc`.

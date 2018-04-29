@@ -17,9 +17,9 @@ from MyWeb3 import MyWeb3
 secret = '0x546de93a45c8df31e63b0bea9534a7ca03e9eb0e817f0d436d9b324b43d0a123'
 address = '0xdce2dd4bB3A9E29714dD317d05869fcD72F20Cbe'
 
-logisticAddress = '0xfb1e3d935da5fc952bee28d600b4fef481bc8eb7'
-consumerAddress = '0x07f69985895fb70953f74f473f20e353136cf91f'
-deployerAddress = '0xb39237807bcb2d32a26578d289b61cb53b6ae321'
+logisticAddress = '0x67ade3b322778c85a7b0ffe4c4c9b38aeb5c9e2e'
+consumerAddress = '0x6c511d8dab8bb19f90c3cdbb2918f80a9a7e5c0c'
+deployerAddress = '0x4269a5b9cdb2b8b1b8c30bbd3be91c1a04129462'
 myweb3 = MyWeb3(logisticAddress, consumerAddress, deployerAddress, 'AmBros.sol')
 
 BALANCE = 'Balance'
@@ -80,7 +80,7 @@ def getBalance(instance):
     consumerBalance = int(round(myweb3.getConsumerBalance() / 1e18))
     logisticBalance = int(round(myweb3.getLogisticBalance() / 1e18))
     contractBalance = int(round(myweb3.getContractBalance() / 1e18))
-    popup = Popup(title='Info', content=Label(text='Consumer Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance), font_size = 50), size_hint=(0.3, 0.3))
+    popup = Popup(title='Info', content=Label(text='Initiator Balance: {} ether\nLogistic Balance: {} ether\nContract Balance: {} ether'.format(consumerBalance, logisticBalance, contractBalance), font_size = 50), size_hint=(0.5, 0.5))
     popup.open()
 
 
